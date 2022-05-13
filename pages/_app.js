@@ -19,6 +19,12 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows:  1fr 4rem;
+  }
+  #__next {
+    display: contents;
   }
 `;
 

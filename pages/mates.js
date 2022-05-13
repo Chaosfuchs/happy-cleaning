@@ -1,15 +1,12 @@
+import styled from 'styled-components';
 import Navbar from '../components/navbar';
 import { Title } from '../components/header';
-import RoomCard from '../components/roomCard';
 
 export default function Home() {
   return (
     <>
-      <div>
-        <Title>Rooms</Title>
-
-        <RoomCard></RoomCard>
-      </div>
+      <Title>Flat Mates</Title>
+      <div></div>
       <Navbar></Navbar>
     </>
   );
