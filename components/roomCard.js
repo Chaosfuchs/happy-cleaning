@@ -1,13 +1,28 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { useState } from 'react';
 
 export default function RoomCard() {
+  const [card, setCard] = useState([
+    { name: 'Kitchen', isChecked: false, mate: null },
+    { name: 'Floor', isChecked: false, mate: null },
+    { name: 'Bathroom', isChecked: false, mate: null },
+  ]);
+
   return (
     <>
-      <StyledContainerRooms>
-        <h2>Kitchen</h2>
-
-        <StyledCheckButton></StyledCheckButton>
-      </StyledContainerRooms>
+      {card.map(({ name, isChecked, mate }) => {
+        return (
+          <StyledContainerRooms>
+            <h2>{name}</h2>
+            {mate ? (
+              <img src={mate?.image} />
+            ) : (
+              <StyledCheck variant="filler"></StyledCheck>
+            )}
+            <StyledCheck></StyledCheck>
+          </StyledContainerRooms>
+        );
+      })}
     </>
   );
 }
@@ -21,13 +36,21 @@ const StyledContainerRooms = styled.div`
 
   h2 {
     margin: 20px;
+    flex-grow: 2;
   }
 `;
 
-const StyledCheckButton = styled.button`
+const StyledCheck = styled.div`
   width: 30px;
   height: 30px;
   margin: 20px;
   background-color: red;
   border-radius: 999px;
+  border: 2px solid black;
+
+  ${({ variant }) =>
+    variant === 'filler' &&
+    css`
+      background-color: grey;
+    `}
 `;

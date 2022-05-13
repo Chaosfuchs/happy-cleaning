@@ -7,7 +7,6 @@ export default function Home() {
     <>
       <div>
         <Title>Rooms</Title>
-
         <RoomCard></RoomCard>
       </div>
       <Navbar></Navbar>
