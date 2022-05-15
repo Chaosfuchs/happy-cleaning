@@ -3,9 +3,30 @@ import create from 'zustand';
 const useStore = create((set, get) => {
   return {
     rooms: [
-      { id: '0', name: 'Kitchen', isChecked: false, mate: null },
-      { id: '1', name: 'Floor', isChecked: false, mate: null },
-      { id: '2', name: 'Bathroom', isChecked: true, mate: null },
+      {
+        id: '0',
+        name: 'Kitchen',
+        isChecked: true,
+        mate: null,
+        details: 'The kitchen needs to clean...',
+        frequency: 'weekly',
+      },
+      {
+        id: '1',
+        name: 'Floor',
+        isChecked: false,
+        mate: null,
+        details: 'The floor needs to...',
+        frequency: 'daily',
+      },
+      {
+        id: '2',
+        name: 'Bathroom',
+        isChecked: true,
+        mate: null,
+        details: 'The bathroom needs to clean...',
+        frequency: 'monthly',
+      },
     ],
     mates: [
       { id: '0', name: 'Anna', image: null, todos: [], showMe: false },
