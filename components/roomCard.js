@@ -1,26 +1,25 @@
 import styled, { css } from 'styled-components';
-import { useState } from 'react';
+import useStore from '../hooks/useStore';
+import Link from 'next/link';
 
 export default function RoomCard() {
-  const [card, setCard] = useState([
-    { id: '0', name: 'Kitchen', isChecked: false, mate: null },
-    { id: '1', name: 'Floor', isChecked: false, mate: null },
-    { id: '2', name: 'Bathroom', isChecked: true, mate: null },
-  ]);
+  const rooms = useStore(state => state.rooms);
 
   return (
     <>
-      {card.map(({ id, name, isChecked, mate }) => {
+      {rooms.map(({ id, name, isChecked, mate }) => {
         return (
-          <StyledContainerRooms key={id}>
-            <h2>{name}</h2>
-            {mate ? (
-              <img src={mate?.image} />
-            ) : (
-              <StyledCheck variant="filler"></StyledCheck>
-            )}
-            <StyledCheck isChecked={isChecked}></StyledCheck>
-          </StyledContainerRooms>
+          <Link key={id} passHref href={`/rooms/${id}`}>
+            <StyledContainerRooms>
+              <h2>{name}</h2>
+              {mate ? (
+                <img src={mate?.image} />
+              ) : (
+                <StyledCheck variant="filler"></StyledCheck>
+              )}
+              <StyledCheck isChecked={isChecked}></StyledCheck>
+            </StyledContainerRooms>
+          </Link>
         );
       })}
     </>

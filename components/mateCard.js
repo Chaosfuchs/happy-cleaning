@@ -1,19 +1,9 @@
 import styled, { css } from 'styled-components';
-import { useState } from 'react';
+import useStore from '../hooks/useStore';
 
 export default function MateCard() {
-  const [mates, setMates] = useState([
-    { id: '0', name: 'Anna', image: null, todos: [], showMe: false },
-    { id: '1', name: 'Marvin', image: null, todos: [], showMe: false },
-    { id: '2', name: 'Kerstin', image: null, todos: [], showMe: false },
-  ]);
-
-  function toggle(id) {
-    const newMates = mates.map(mate => {
-      return { ...mate, showMe: mate.id === id ? !mate.showMe : mate.showMe };
-    });
-    setMates(newMates);
-  }
+  const mates = useStore(state => state.mates);
+  const toggle = useStore(state => state.toggle);
 
   return (
     <>
