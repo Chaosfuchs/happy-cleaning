@@ -16,7 +16,7 @@ export default function Room() {
   const chooseMate = useStore(state => state.chooseMate);
 
   return (
-    <StyledRoomContainer>
+    <StyledRoomContainer key={rooms.id}>
       {room && (
         <div>
           <StyledLink>
