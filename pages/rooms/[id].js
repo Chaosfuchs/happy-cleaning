@@ -39,7 +39,10 @@ export default function Room() {
           </StyledDiv>
           <StyledDiv>
             <p>Status:</p>
-            <button isChecked></button>
+            <StyledButton
+            //  onClick={toggleButton(id)}
+            //  isChecked={room.isChecked}
+            ></StyledButton>
           </StyledDiv>
           <StyledDiv>
             <p>Frequency:</p>
@@ -73,15 +76,21 @@ const StyledDiv = styled.div`
   select {
     height: 40px;
   }
+`;
 
-  button {
-    height: 50px;
-    width: 50px;
-    border-radius: 999px;
-    border: 2px solid black;
-    box-shadow: 2px 2px 2px grey;
-    background-color: ${({ isChecked }) => (isChecked ? 'lightgreen' : 'red')};
-  }
+const StyledButton = styled.button`
+  width: 40px;
+  height: 40px;
+  margin: 20px;
+  background-color: red;
+  border-radius: 999px;
+  border: 2px solid black;
+
+  ${({ isChecked }) =>
+    isChecked &&
+    css`
+      background-color: lightgreen;
+    `}
 `;
 
 const StyledText = styled.p`

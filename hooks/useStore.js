@@ -8,7 +8,8 @@ const useStore = create((set, get) => {
         name: 'Kitchen',
         isChecked: true,
         mate: null,
-        details: 'The kitchen needs to clean...',
+        details:
+          'The kitchen needs to clean: Desk, Fridge, Kitchenfloor, Oven, Sideboard ',
         frequency: 'weekly',
       },
       {
@@ -16,15 +17,16 @@ const useStore = create((set, get) => {
         name: 'Floor',
         isChecked: false,
         mate: null,
-        details: 'The floor needs to...',
-        frequency: 'daily',
+        details: 'The floor needs to vaccuuming and mopping',
+        frequency: 'weekly',
       },
       {
         id: '2',
         name: 'Bathroom',
         isChecked: true,
         mate: null,
-        details: 'The bathroom needs to clean...',
+        details:
+          'The bathroom needs to clean: Toilet, Sink, Shower, Bathtub, Flows ',
         frequency: 'monthly',
       },
     ],
@@ -48,6 +50,20 @@ const useStore = create((set, get) => {
     findRoom: id => {
       return get().rooms.find(room => room.id === id);
     },
+    /* toggleButton: id => {
+      set(state => {
+        return {
+          rooms: state.rooms.map(room => {
+            return {
+              isChecked:
+                room.id === id
+                  ? (room.isChecked = false)
+                  : (room.isChecked = true),
+            };
+          }),
+        }; 
+      }); 
+    },*/
   };
 });
 

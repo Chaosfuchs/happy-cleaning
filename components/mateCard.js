@@ -4,6 +4,7 @@ import useStore from '../hooks/useStore';
 export default function MateCard() {
   const mates = useStore(state => state.mates);
   const toggle = useStore(state => state.toggle);
+  const rooms = useStore(state => state.rooms);
 
   return (
     <>
@@ -17,12 +18,16 @@ export default function MateCard() {
                 <StyledFiller variant="filler"></StyledFiller>
               )}
               <h2>{name}</h2>
-              <button onClick={() => toggle(id)}>V</button>
+              <button onClick={() => toggle(id)}></button>
             </StyledMiniContainer>
             <StyledToDoContainer showMe={showMe}>
               <ul>
-                <li> Kitchen</li>
-                <li>Bathroom</li>
+                <li>
+                  {rooms.name} {rooms.isChecked}
+                </li>
+                <li>
+                  {rooms.name} {rooms.isChecked}
+                </li>
               </ul>
             </StyledToDoContainer>
           </StyledContainerMates>
@@ -54,9 +59,16 @@ const StyledMiniContainer = styled.div`
 
   button {
     position: absolute;
+    background-color: transparent;
+    background-image: url(/arrow.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 0;
     left: 290px;
     width: 50px;
     height: 50px;
+    border-radius: 999px;
+    border: none;
   }
 `;
 
