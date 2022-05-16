@@ -6,7 +6,7 @@ const useStore = create((set, get) => {
       {
         id: '0',
         name: 'Kitchen',
-        isChecked: true,
+        isChecked: false,
         mate: null,
         details:
           'The kitchen needs to clean: Desk, Fridge, Kitchenfloor, Oven, Sideboard ',
@@ -23,7 +23,7 @@ const useStore = create((set, get) => {
       {
         id: '2',
         name: 'Bathroom',
-        isChecked: true,
+        isChecked: false,
         mate: null,
         details:
           'The bathroom needs to clean: Toilet, Sink, Shower, Bathtub, Flows ',
@@ -31,9 +31,30 @@ const useStore = create((set, get) => {
       },
     ],
     mates: [
-      { id: '0', name: 'Anna', image: null, todos: [], showMe: false },
-      { id: '1', name: 'Marvin', image: null, todos: [], showMe: false },
-      { id: '2', name: 'Kerstin', image: null, todos: [], showMe: false },
+      {
+        id: '0',
+        name: 'Anna',
+        image:
+          'https://cdn.pixabay.com/photo/2018/03/30/21/39/fractalius-3276624_960_720.jpg',
+        todos: [],
+        showMe: false,
+      },
+      {
+        id: '1',
+        name: 'Marvin',
+        image:
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaYjMqmo4bKrjwXWRf-qNwNQSRPvvRj5SwliW2VHM3nhR7DSetHN-GXAGyZWeHJqYlEWo&usqp=CAU',
+        todos: [],
+        showMe: false,
+      },
+      {
+        id: '2',
+        name: 'Kerstin',
+        image:
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9DcvZbojgf8dHI4TbVDa4lsyKY_9XbRzv4Q&usqp=CAU',
+        todos: [],
+        showMe: false,
+      },
     ],
     toggle: id => {
       set(state => {
@@ -50,20 +71,38 @@ const useStore = create((set, get) => {
     findRoom: id => {
       return get().rooms.find(room => room.id === id);
     },
-    /* toggleButton: id => {
+    toggleStatus: id => {
       set(state => {
+        const updatedRooms = state.rooms.map(room => {
+          if (room.id === id) {
+            room.isChecked = !room.isChecked;
+            console.log(room.isChecked);
+            return room;
+          }
+          return room;
+        });
+
         return {
-          rooms: state.rooms.map(room => {
-            return {
-              isChecked:
-                room.id === id
-                  ? (room.isChecked = false)
-                  : (room.isChecked = true),
-            };
-          }),
-        }; 
-      }); 
-    },*/
+          rooms: updatedRooms,
+        };
+      });
+    },
+    chooseMate: (roomId, flatmateId) => {
+      set(state => {
+        const updatedMates = state.rooms.map(room => {
+          if (room.id === roomId) {
+            room.mate = flatmateId;
+            console.log(flatmateId);
+            return room;
+          }
+          return room;
+        });
+
+        return {
+          rooms: updatedMates,
+        };
+      });
+    },
   };
 });
 

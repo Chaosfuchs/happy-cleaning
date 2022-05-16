@@ -70,6 +70,14 @@ const StyledMiniContainer = styled.div`
     border-radius: 999px;
     border: none;
   }
+
+  img {
+    width: 50px;
+    height: 50px;
+    border-radius: 999px;
+    border: 2px solid black;
+    margin: 20px;
+  }
 `;
 
 const StyledToDoContainer = styled.div`

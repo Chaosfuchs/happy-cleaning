@@ -13,7 +13,7 @@ export default function RoomCard() {
             <StyledContainerRooms>
               <h2>{name}</h2>
               {mate ? (
-                <img src={mate?.image} />
+                <img src={mate.image} />
               ) : (
                 <StyledCheck variant="filler"></StyledCheck>
               )}

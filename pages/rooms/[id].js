@@ -3,20 +3,17 @@ import styled, { css } from 'styled-components';
 import { Title } from '../../components/header';
 import useStore from '../../hooks/useStore';
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 export default function Room() {
   const { query } = useRouter();
   const { id } = query;
 
-  const [room, setRoom] = useState(null);
   const rooms = useStore(state => state.rooms);
-  const toggleButton = useStore(state => state.toggleButton);
-
-  useEffect(() => {
-    setRoom(rooms.find(room_ => room_.id === id));
-  }, [setRoom, rooms, id]);
+  const room = rooms.find(room_ => room_.id === id);
+  const toggleStatus = useStore(state => state.toggleStatus);
+  const mates = useStore(state => state.mates);
+  const chooseMate = useStore(state => state.chooseMate);
 
   return (
     <StyledRoomContainer>
@@ -30,18 +27,18 @@ export default function Room() {
           <Title>{room.name}</Title>
           <StyledDiv>
             <p>Assignee:</p>
-            <select>
+            <select onChange={event => chooseMate(room.id, event.target.value)}>
               <option value="">--Please choose a mate--</option>
-              <option value="mate1">Anna</option>
-              <option value="mate2">Marvin</option>
-              <option value="mate3">Kerstin</option>
+              {mates.map(mate => {
+                return <option value={mate.id}>{mate.name}</option>;
+              })}
             </select>
           </StyledDiv>
           <StyledDiv>
             <p>Status:</p>
             <StyledButton
-            //  onClick={toggleButton(id)}
-            //  isChecked={room.isChecked}
+              onClick={() => toggleStatus(room.id)}
+              isChecked={room.isChecked}
             ></StyledButton>
           </StyledDiv>
           <StyledDiv>
