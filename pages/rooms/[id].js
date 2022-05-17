@@ -16,7 +16,7 @@ export default function Room() {
   const chooseMate = useStore(state => state.chooseMate);
 
   return (
-    <StyledRoomContainer key={rooms.id}>
+    <StyledRoomContainer>
       {room && (
         <div>
           <StyledLink>
@@ -30,7 +30,11 @@ export default function Room() {
             <select onChange={event => chooseMate(room.id, event.target.value)}>
               <option value="">--Please choose a mate--</option>
               {mates.map(mate => {
-                return <option value={mate.id}>{mate.name}</option>;
+                return (
+                  <option key={mate.id} value={mate.id}>
+                    {mate.name}
+                  </option>
+                );
               })}
             </select>
           </StyledDiv>
